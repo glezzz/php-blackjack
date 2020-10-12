@@ -5,6 +5,10 @@ class Player
     private $cards = [];
     private $lost = false;
 
+    function __construct(){
+
+    }
+
     public function hit()
     {
 
