@@ -1,18 +1,18 @@
 <?php
 
-require 'Deck.php';     //Make it require the Deck object
-
 
 class Player
 {
     private array $cards = [];
-    private bool $lost = false;
+    private bool $lost;
 
 
     public function __construct($deck)      //Pass this Deck from the Blackjack constructor
     {
-        $deck->drawCard();  //Now draw 2 cards for the player. You have to use existing code for this from the Deck class.
-        $deck->drawCard();
+        $first_card = $deck->drawCard();//Now draw 2 cards for the player. You have to use existing code for this from the Deck class.
+        array_push($this->cards, $first_card);  // Need to push first card to array before drawing the 2nd, otherwise it would override the first one.
+        $sec_card = $deck->drawCard();
+        array_push($this->cards, $sec_card);
 
     }
 
