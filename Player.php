@@ -1,38 +1,52 @@
 <?php
+declare(strict_types=1);
 
+class Player {
 
-class Player
-{
-    private array $cards = [];
-    private bool $lost;
+    private array $cards;
+    private bool $lost = false;
 
+    function __construct(Deck $deck){       // Make it require the Deck object. (First Deck to require the class, 2nd $deck as parameter
 
-    public function __construct($deck)      //Pass this Deck from the Blackjack constructor
+        $this->cards = [];
+        array_push($this->cards, $deck->drawCard(), $deck->drawCard()); // twice because 2 cards
+    }
+
+    public function showHand(Deck $deck)
     {
-        $first_card = $deck->drawCard();//Now draw 2 cards for the player. You have to use existing code for this from the Deck class.
-        array_push($this->cards, $first_card);  // Need to push first card to array before drawing the 2nd, otherwise it would override the first one.
-        $sec_card = $deck->drawCard();
-        array_push($this->cards, $sec_card);
+        foreach ($deck->getCards() as $card) {
+            echo $card->getUnicodeCharacter(true);
+            echo '<br>';
+        }
+    }
+
+    public function hit(Deck $deck){
+
+        array_push($this->cards, $deck->drawCard()); //whenever we hit we push 1 extra card to the array
+        if($this->getScore() > 21){
+            $this->lost = true;
+        }
 
     }
 
-    public function hit()
-    {
+    public function surrender(){
+
+        $this->lost = true;
 
     }
 
-    public function surrender()
-    {
+    public function getScore(){
+
+        $score = 0;
+
 
     }
 
-    public function getScore()
-    {
+    public function hasLost(){
+
+        $this->lost = true;
 
     }
 
-    public function hasLost()
-    {
-
-    }
 }
+

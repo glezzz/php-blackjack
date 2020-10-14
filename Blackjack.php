@@ -1,32 +1,36 @@
 <?php
+declare(strict_types=1);
 
+class Blackjack {
 
-class Blackjack
-{
     private $player, $dealer, $deck;
 
-    public function __construct()
-    {
-        $this->deck = new Deck();       //Create a new deck object (code has already been written for you!).
-        $this->deck->shuffle();     //Shuffle the cards with shuffle method on deck.
-        $this->player = new Player($this->deck);     //Instantiate the Player class twice, insert it into the player property and a dealer property.
-        $this->dealer = new Player($this->deck);
+    function __construct(){
 
+        $deck = new Deck();
+        $deck->shuffle();
+        $this->player = new Player($deck);
+        $this->dealer = new Player($deck);
     }
 
-    public function getPlayer()
-    {
+    public function getPlayer(){
 
+        return $this->player;
     }
 
-    public function getDealer()
-    {
+    public function getDealer(){
 
+        return $this->dealer;
     }
+
+    public function getDeck(){
+
+        return $this->deck;
+    }
+
 
 
 }
-
 
 
 
